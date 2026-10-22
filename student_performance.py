@@ -95,3 +95,11 @@ plt.savefig("g2_vs_g3.png")
 # Display the chart
 plt.show()
 
+
+
+
+# Correlation between second-period and final grades
+correlation = df["G2"].corr(df["G3"])
+
+print("\n--- Correlation Analysis ---")
+print("Correlation between G2 and G3:", round(correlation, 3))
