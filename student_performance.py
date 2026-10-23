@@ -102,4 +102,34 @@ plt.show()
 correlation = df["G2"].corr(df["G3"])
 
 print("\n--- Correlation Analysis ---")
-print("Correlation between G2 and G3:", round(correlation, 3))
+print("Correlation between G2 and G3:", round(correlation, 3)) 
+
+# Analyze absences vs final grades
+
+print("\n--- Absences vs Final Grades ---")
+
+# Check basic statistics
+print(df[['absences', 'G3']].describe())
+
+# Calculate correlation
+correlation = df['absences'].corr(df['G3'])
+
+print(f"Correlation between absences and final grades: {correlation:.3f}")
+
+# Visualize the relationship
+plt.figure(figsize=(8, 5))
+
+plt.scatter(
+    df['absences'],
+    df['G3'],
+    alpha=0.7
+)
+
+plt.xlabel('Number of Absences')
+plt.ylabel('Final Grade (G3)')
+plt.title('Student Absences vs Final Grades')
+
+plt.grid(True, alpha=0.3)
+
+plt.savefig('absences_vs_final_grade.png')
+plt.show()
