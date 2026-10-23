@@ -133,3 +133,25 @@ plt.grid(True, alpha=0.3)
 
 plt.savefig('absences_vs_final_grade.png')
 plt.show()
+
+# Analyze gender vs final grades
+
+print("\n--- Gender vs Final Grades ---")
+
+gender_grades = df.groupby('sex')['G3'].mean()
+
+print(gender_grades)
+
+plt.figure(figsize=(7, 5))
+
+gender_grades.plot(kind='bar', color=['pink', 'skyblue'])
+
+plt.xlabel('Gender')
+plt.ylabel('Average Final Grade')
+plt.title('Average Final Grade by Gender')
+
+plt.xticks(rotation=0)
+plt.grid(axis='y', alpha=0.3)
+
+plt.savefig('gender_vs_final_grade.png')
+plt.show()
