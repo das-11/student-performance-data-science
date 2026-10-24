@@ -155,3 +155,73 @@ plt.grid(axis='y', alpha=0.3)
 
 plt.savefig('gender_vs_final_grade.png')
 plt.show()
+
+
+# Detailed Statistical Analysis: Study Time vs Final Grade
+
+studytime_analysis = df.groupby("studytime")["G3"].agg(
+    ["count", "mean", "median", "min", "max"]
+)
+
+print("\nDetailed Study Time Analysis:")
+print(studytime_analysis)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.barplot(
+    x=studytime_analysis.index,
+    y=studytime_analysis["mean"]
+)
+
+plt.title("Average Final Grade by Study Time")
+plt.xlabel("Study Time Category")
+plt.ylabel("Average Final Grade")
+
+plt.tight_layout()
+plt.savefig("average_grade_by_studytime.png", dpi=300, bbox_inches="tight")
+plt.show()
+# Absences vs Final Grade: Correlation Analysis
+
+absence_correlation = df["absences"].corr(df["G3"])
+
+print("Correlation between Absences and Final Grade:", absence_correlation)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.scatterplot(data=df, x="absences", y="G3")
+
+plt.title("Absences vs Final Grade")
+plt.xlabel("Number of Absences")
+plt.ylabel("Final Grade (G3)")
+
+plt.tight_layout()
+plt.savefig("absences_vs_final_grade.png", dpi=300, bbox_inches="tight")
+plt.show()
+absence_correlation = df["absences"].corr(df["G3"])
+
+print("Correlation between Absences and Final Grade:", absence_correlation)
+
+# Previous Failures vs Final Grade
+
+failure_correlation = df["failures"].corr(df["G3"])
+
+print(
+    "Correlation between Previous Failures and Final Grade:",
+    failure_correlation
+)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.boxplot(data=df, x="failures", y="G3")
+
+plt.title("Previous Failures vs Final Grade")
+plt.xlabel("Number of Previous Failures")
+plt.ylabel("Final Grade (G3)")
+
+plt.tight_layout()
+plt.savefig("failures_vs_final_grade.png", dpi=300, bbox_inches="tight")
+plt.show()
+
